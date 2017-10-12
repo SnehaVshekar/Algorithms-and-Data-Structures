@@ -1,0 +1,52 @@
+# Algorithms-and-Data-Structures
+#SER-501
+
+# Brute Force - O(n^2)
+
+from numpy import asarray
+
+
+# TODO: Replace all TODO comments (yes, this one too!)
+"""
+
+STOCK_PRICE_CHANGES  = [100, 113, 110, 85, 105, 102, 86, 63, 81,
+101, 94, 106, 101, 79, 94, 90, 97]
+
+"""
+STOCK_PRICE_CHANGES = [13, -3, -25, 20, -3, -16, -23, 18,
+                       20, -7, 12, -5, -22, 15, -4, 7]
+                       
+def find_maximum_subarray_brute(A):
+    """
+
+    Return a tuple (i,j) where A[i:j] is the maximum subarray.
+
+    time complexity = O(n^2)
+
+    """
+
+    if len(A) == 0:
+        return None
+
+    start = 0
+    end = len(A)
+    maxsum = -999999  # Setting the value to infinity
+
+    for i in range(start, end, 1):
+        total = 0
+
+        for j in range(i, end, 1):
+            # add every element of the array to the variable sum
+            total = total + A[j]
+
+            if total > maxsum:        # check if sum is greater than max-sum
+                maxsum = total
+                start_index = i     # Assign the start index of the sub-array
+                end_index = j       # Assign the last index of the sub-array
+
+    return (start_index, end_index, maxsum)
+
+ index1, index2, maxSum = (find_maximum_subarray_brute(STOCK_PRICE_CHANGES))
+ print
+ print("Brute Force Method")
+ print (index1, index2)
