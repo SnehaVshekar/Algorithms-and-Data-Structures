@@ -1,0 +1,47 @@
+from numpy import asarray
+
+
+# TODO: Replace all TODO comments (yes, this one too!)
+"""
+
+STOCK_PRICE_CHANGES  = [100, 113, 110, 85, 105, 102, 86, 63, 81,
+101, 94, 106, 101, 79, 94, 90, 97]
+
+"""
+STOCK_PRICE_CHANGES = [13, -3, -25, 20, -3, -16, -23, 18,
+                       20, -7, 12, -5, -22, 15, -4, 7]
+
+
+# The iterative method to solve max subarray problem
+def find_maximum_subarray_iterative(A, low=0, high=-1):
+    """
+
+    Return a tuple (i,j) where A[i:j] is the maximum subarray.
+
+    """
+    if len(A) == 0:
+        return None
+
+    low = 0
+    high = len(A)
+    totalSum = A[low]
+    tempSum = 0
+    tempLeftIndex = 0
+    leftIndex = 0
+    rightIndex = 0
+
+    for i in range(low, high, 1):
+        tempSum = max(A[i], (tempSum + A[i]))
+        if tempSum == A[i]:
+            tempLeftIndex = i
+        if tempSum > totalSum:
+            totalSum = tempSum
+            rightIndex = i
+            leftIndex = tempLeftIndex
+    return (leftIndex, rightIndex, totalSum)
+    
+print
+l, r, sum = find_maximum_subarray_iterative(STOCK_PRICE_CHANGES)
+print("Iterative method")
+print(l, r)
+print
