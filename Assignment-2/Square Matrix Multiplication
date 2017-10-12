@@ -1,0 +1,34 @@
+from numpy import asarray
+
+def square_matrix_multiply(A, B):
+    """
+
+    Return the product AB of matrix multiplication.
+
+    """
+
+    A = asarray(A)
+    B = asarray(B)
+
+    assert A.shape == B.shape
+    assert A.shape == A.T.shape
+
+    # Since it is a sqaure matrix , row = column = n
+
+    n = len(A)
+
+    C = [[0 for i in range(n)] for j in range(n)]
+    for i in range(0, n):
+        for j in range(0, n):
+            C[i][j] = 0
+            for k in range(0, n):
+                C[i][j] = C[i][j] + A[i][k] * B[k][j]
+
+    return C
+    
+A = asarray([[1, 3], [7, 5]])
+B = asarray([[6, 8], [4, 2]])
+print
+print("Normal square matrix multiplication")
+print(square_matrix_multiply(A, B))
+print
